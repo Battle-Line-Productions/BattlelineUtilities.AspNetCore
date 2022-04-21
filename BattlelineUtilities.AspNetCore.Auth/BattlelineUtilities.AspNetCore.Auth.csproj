@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>Michael T Cavanaugh</Authors>
+		<Company>BattleLine Productions</Company>
+		<Description>This library simplifies the task of adding Role and Permission based Authorization to your WebApi projects using Auth.</Description>
+		<Copyright>2022 @ BattleLine Productions LLC</Copyright>
+		<RepositoryUrl>https://github.com/Battle-Line-Productions/BattlelineUtilities.AspNetCore/blob/main/README.md</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<PackageTags>aspnetcore dotnetcore auth authentication authorization</PackageTags>
+		<PackageProjectUrl>https://github.com/Battle-Line-Productions/BattlelineUtilities.AspNetCore/blob/main/README.md</PackageProjectUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>1.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" Version="2.2.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authorization.Policy" Version="2.2.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
+	</ItemGroup>
+
+</Project>
