@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
       - name: Setup .NET Core @ Latest
         uses: actions/setup-dotnet@v2
         with:
@@ -20,12 +21,13 @@ jobs:
           dotnet-version: "6.0"
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
-      - name: Build Project
-        run: |
-          dotnet build BattlelineUtilities.AspNetCore.Auth --configuration Release
-      - name: Build solution and generate NuGet package
-        run: |
-          cd BattlelineUtilities.AspNetCore.Auth
-          dotnet pack -c Release -o out
-      - name: Push generated package to NuGet registry
-        run: dotnet nuget push ./out/*.nupkg -k ${{secrets.NUGET_TOKEN}} --skip-duplicate --no-symbols true
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Publish
+        run: | # | character makes the "run" property multi-line, so we can put multiple commands in the same step
+          mkdir __out
+          dotnet pack -c Release -o __out --no-restore
+          dotnet nuget push "./__out/*.nupkg" --skip-duplicate --no-symbols true --api-key ${{secrets.NUGET_TOKEN}}
+          rm -rf __out
