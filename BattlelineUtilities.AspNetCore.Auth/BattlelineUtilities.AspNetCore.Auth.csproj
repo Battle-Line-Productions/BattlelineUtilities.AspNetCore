@@ -30,4 +30,8 @@
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Include="https:\github.com\Battle-Line-Productions\BattlelineUtilities.AspNetCore\blob\main\README.md" />
+	</ItemGroup>
+
 </Project>
