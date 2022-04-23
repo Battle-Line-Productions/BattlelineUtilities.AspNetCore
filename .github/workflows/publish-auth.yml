@@ -26,9 +26,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
 
-      - name: Publish Auth
-        run: |
-          mkdir __out
-          dotnet pack BattlelineUtilities.AspNetCore.Auth -c Release -o __out --no-restore
-          dotnet nuget push "./__out/*.nupkg" --skip-duplicate --no-symbols true --api-key ${{secrets.NUGET_TOKEN}}
-          rm -rf __out
+      - name: Publish to NuGet
+        uses: tedd/publish-nuget-neo@v1.0.2
+        with:
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
