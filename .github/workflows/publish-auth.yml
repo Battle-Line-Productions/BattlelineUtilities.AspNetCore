@@ -29,4 +29,4 @@ jobs:
       - name: Publish to NuGet
         uses: tedd/publish-nuget-neo@v1.0.2
         with:
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          NUGET_KEY: ${{secrets.NUGET_TOKEN}}
