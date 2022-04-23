@@ -6,6 +6,12 @@ on:
   pull_request:
     types: [closed]
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      publishAuth:
+        description: 'Publish Auth (Y/N)?'
+        required: true
+        default: 'Y'
 
 # https://tehgm.net/blog/nuget-github-actions/
 jobs:
@@ -26,9 +32,10 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
 
-      - name: Publish
-        run: | 
+      - name: Publish MyLibrary
+        if: github.event.inputs.publishMain == 'Y'
+        run: |
           mkdir __out
-          dotnet pack -c Release -o __out --no-restore
+          dotnet pack BattlelineUtilities.AspNetCore.Auth -c Release -o __out --no-restore
           dotnet nuget push "./__out/*.nupkg" --skip-duplicate --no-symbols true --api-key ${{secrets.NUGET_TOKEN}}
           rm -rf __out
